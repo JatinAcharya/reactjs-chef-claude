@@ -2,6 +2,6 @@ body {
   margin: 0;
   /* width: 70%; */
   margin: auto;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   background-color: #FAFAF8;
 }
