@@ -1,16 +1,11 @@
 import React from "react";
-import ClaudeRecipe from "./ClaudeRecipe";
+import Recipe from "./Recipe";
 import IngredientsList from "./IngredientsList";
 import { getRecipeFromMistral } from "../ai";
 
 const Main = () => {
   // const ingredients = ["Chicken", "Oregano", "Tomatoes"];
-  const [ingredients, setIngredients] = React.useState([
-    "Chicken",
-    "Salt",
-    "Oregano",
-    "Onion",
-  ]);
+  const [ingredients, setIngredients] = React.useState([]);
   // const [recipeShown, setRecipeShown] = React.useState(false);
   const [recipe, setRecipe] = React.useState("");
 
@@ -23,6 +18,9 @@ const Main = () => {
     // setRecipeShown(true);
     console.log(ingredients);
     const recipeMarkdown = await getRecipeFromMistral(ingredients);
+    // const recipeMarkdown = ;
+    // recipeMarkdown.replace("/^```.+\n|\n```$)/g", "");
+    recipeMarkdown.replace(/```markdown|```/gm, "");
     setRecipe(recipeMarkdown);
     console.log(recipe);
   };
@@ -44,7 +42,7 @@ const Main = () => {
           ingredients={ingredients}
           handleGetRecipe={handleGetRecipe}
         />
-        {recipe && <ClaudeRecipe recipe={recipe} />}
+        {recipe && <Recipe recipe={recipe} />}
       </main>
     </>
   );
